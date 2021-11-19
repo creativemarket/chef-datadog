@@ -1,25 +1,23 @@
+init_config:
+
 <%= JSON.parse(({'logs' => @logs }).to_json).to_yaml %>
 
 instances:
 <% @instances.each do |i| -%>
-  - server: <%= i['server'] %>
-    <% if i.key?('port') -%>
-    port: <%= i['port'] %>
-    <% end -%>
-    user: <%= i['user'] %>
-    pass: <%= i['pass'] %>
-    <% if i.key?('sock') -%>
-    sock: <%= i['sock'] %>
-    <% end -%>
-    <% if i.key?('min_collection_interval') -%>
-    min_collection_interval: <%= i['min_collection_interval'] %>
-    <% end -%>
   - dbm: <%= i['dbm'] %>
     host: <%= i['host'] %>
+  <% if i.key?('port') -%>
     port: <%= i['port'] %>
+  <% end -%>
     username: <%= i['user'] %>
     password: <%= i['pass'] %>
-    <% if i.key?('tags') -%>
+  <% if i.key?('sock') -%>
+    sock: <%= i['sock'] %>
+  <% end -%>
+  <% if i.key?('min_collection_interval') -%>
+    min_collection_interval: <%= i['min_collection_interval'] %>
+  <% end -%>
+  <% if i.key?('tags') -%>
     tags:
     <% i['tags'].each do |t| -%>
     - <%= t %>
@@ -41,6 +39,3 @@ instances:
     <% end -%>
   <% end -%>
 <% end -%>
-
-# Nothing to configure here
-init_config:
