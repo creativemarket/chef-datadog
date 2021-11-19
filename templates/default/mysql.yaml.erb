@@ -1,6 +1,6 @@
-init_config:
-
 <%= JSON.parse(({'logs' => @logs }).to_json).to_yaml %>
+
+init_config:
 
 instances:
 <% @instances.each do |i| -%>
@@ -9,8 +9,8 @@ instances:
   <% if i.key?('port') -%>
     port: <%= i['port'] %>
   <% end -%>
-    username: <%= i['user'] %>
-    password: <%= i['pass'] %>
+    username: <%= i['username'] %>
+    password: <%= i['password'] %>
   <% if i.key?('sock') -%>
     sock: <%= i['sock'] %>
   <% end -%>
